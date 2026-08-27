@@ -246,14 +246,14 @@ systemd-homed is unable to resize the home directory.
 
 To boot the image in a virtual machine run `mkosi vm` which copies the build image
 and boots it. Every boot is first boot in this case. To persist the machine state
-use `systemd-vmspawn`. Note that you need to `truncate` the image so it has enough
-space to boot. `truncate -s 20G image.raw`
+use `systemd-vmspawn`. 
 
 ```sh
 mkdir -p "$PWD/.vm-state/tpm"
 ./mkosi/bin/mkosi box -- \
     systemd-vmspawn \
         --image="$PWD/image.raw" \
+        --grow-image=20G \
         --tpm=yes \
         --tpm-state="$PWD/.vm-state/tpm" \
         --efi-nvram-state="$PWD/.vm-state/efivars"
